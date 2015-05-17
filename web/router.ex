@@ -18,6 +18,11 @@ defmodule PiChat.Router do
     get "/", PageController, :index
   end
 
+  # Route for chatting sockets
+  socket "/ws", PiChat do
+    channel "rooms:*", RoomChannel
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", PiChat do
   #   pipe_through :api

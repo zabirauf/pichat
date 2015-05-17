@@ -8,4 +8,9 @@ import {Socket} from "phoenix"
 let App = {
 }
 
+$(".nav a").on("click", function(){
+   $(".nav").find(".active").removeClass("active");
+   $(this).parent().addClass("active");
+});
+
 export default App
