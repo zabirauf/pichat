@@ -10,7 +10,7 @@ defmodule PiChat.RoomChannel do
 
     # Broadcast user count and send the user past messages
     # TODO: Increment the user count and broadcast
-    send(self, {:user_count, 0})
+    send(self, :broadcast_count)
     send(self, :past_messages)
 
     {:ok, socket}
@@ -28,8 +28,7 @@ defmodule PiChat.RoomChannel do
   """
   def terminate(reason, socket) do
     Logger.debug "> leave #{inspect reason}"
-    # TODO: Decrement the count of user and broadcast
-    send(self, {:user_count, 0})
+    broadcast! socket, "user:count", %{"count" => visitor_count(socket) - 1}
     :ok
   end
 
@@ -37,8 +36,10 @@ defmodule PiChat.RoomChannel do
   Handle new message from the user
   """
   def handle_in("new:msg", msg, socket) do
-    broadcast! socket, "new:msg", %{user: msg["user"], body: msg["body"]}
-    # TODO: Add the message to past messages
+    msg_content = %{user: msg["user"], body: msg["body"]}
+    broadcast! socket, "new:msg", msg_content
+
+    PiChat.MessageList.update(msg_content)
 
     {:reply, {:ok, msg["body"]}, assign(socket, :user, msg["user"])}
   end
@@ -46,8 +47,8 @@ defmodule PiChat.RoomChannel do
   @doc """
   Broadcast the user count
   """
-  def handle_info({:user_count, count}, socket) do
-    # TODO: Broadcast the user count
+  def handle_info(:broadcast_count, socket) do
+    broadcast! socket, "user:count", %{"count" => visitor_count(socket)}
     {:noreply, socket}
   end
 
@@ -55,7 +56,12 @@ defmodule PiChat.RoomChannel do
   Send the user past N messages
   """
   def handle_info(:past_messages, socket) do
-    # TODO: Send the user past N messages
+    past_messages = PiChat.MessageList.get
+    Enum.each past_messages, &(push socket, "new:msg", &1)
     {:noreply, socket}
+  end
+
+  defp visitor_count(socket) do
+    Enum.count Phoenix.PubSub.Local.subscribers(PiChat.PubSub.Local, socket.topic)
   end
 end
