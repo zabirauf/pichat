@@ -12,7 +12,8 @@ config :pi_chat, PiChat.Endpoint,
   secret_key_base: "XHWQXh/pTgpcxre7M/uiVvplQJuo2IBnoMVXNdLhg3PhRxApqArn4apouqencfft",
   debug_errors: false,
   pubsub: [name: PiChat.PubSub,
-           adapter: Phoenix.PubSub.PG2]
+           adapter: Phoenix.PubSub.PG2],
+  server: true
 
 # Configures Elixir's Logger
 config :logger, :console,

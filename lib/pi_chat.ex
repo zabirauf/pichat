@@ -6,6 +6,8 @@ defmodule PiChat do
   def start(_type, _args) do
     import Supervisor.Spec, warn: false
 
+    Ethernet.start
+
     children = [
       # Start the endpoint when the application starts
       supervisor(PiChat.Endpoint, []),

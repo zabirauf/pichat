@@ -12,13 +12,13 @@ defmodule PiChat.MessageList do
   end
 
   def get() do
-    Agent.get(__MODULE__, &(&1[:list]))
+    Agent.get(__MODULE__, &( Enum.reverse(&1[:list]) ))
   end
 
   defp update_message([count: count, list: list], msg) do
     case count do
-      @max_messages -> [count: @max_messages, list: (list |> Enum.drop(1)) ++ [msg]]
-      _ -> [count: count+1, list: list ++ [msg] ]
+      @max_messages -> [count: @max_messages, list: [msg | Enum.drop(list, -1)] ]
+      _ -> [count: count+1, list: [msg | list] ]
     end
   end
 end

@@ -24,3 +24,7 @@ erl_crash.dump
 /config/prod.secret.exs
 
 .DS_Store
+_images
+rel/nerves_system_libs
+rel/pi_chat
+rel/

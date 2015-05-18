@@ -44,6 +44,7 @@ class App {
          $(".nav").find(".active").removeClass("active");
          $(this).parent().addClass("active");
       });
+
   }
 
   static sanitize(html) { return $("<div/>").text(html).html() }

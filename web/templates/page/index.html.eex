@@ -20,8 +20,7 @@
     </div>
   </div>
 </section>
-
-<section id="blog" class="blog-section">
+<section id="post" class="post-section">
   <div class="container">
 
     <h1>Blog text goes here</h1>
