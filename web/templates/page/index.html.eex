@@ -1,5 +1,5 @@
 <section id="pichat" class="pichat-section">
-  <div id="user_count" class="container pull-left">
+  <div id="user_count" class="container pull-left text-left">
   <p class="text-left">0</p>
   </div>
   <div id="messages" class="container text-left">
