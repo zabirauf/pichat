@@ -25,9 +25,11 @@ body, html {
 }
 
 #messages {
-  margin-top: 80px;
-  height: 350px;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  height: 70%;
   overflow: scroll;
+  overflow-x: hidden;
 }
 /* Custom page CSS
 -------------------------------------------------- */
@@ -55,11 +57,4 @@ code {
     padding-top: 80px;
     text-align: center;
     background: #fff;
-}
-
-.post-section {
-    height: 100%;
-    padding-top: 80px;
-    text-align: center;
-    background: #eee;
 }

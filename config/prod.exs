@@ -14,7 +14,8 @@ use Mix.Config
 config :pi_chat, PiChat.Endpoint,
   http: [port: 80],
   url: [host: "pichat.zohaib.me"],
-  cache_static_manifest: "priv/static/manifest.json"
+  cache_static_manifest: "priv/static/manifest.json",
+  server: true
 
 # ## SSL Support
 #
