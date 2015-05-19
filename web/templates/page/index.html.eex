@@ -2,7 +2,7 @@
   <div class="container">
     <div id="user_count" class="col-sm-2 text-left">User Count: 0</div>
     <div class="col-sm-6 pull-right text-right">
-      This is running on Raspberry Pi 2 using a Phoenix framework embedded image. Check the <a href="http://zohaib.me" target="_blank">blog post</a> to know more about it.
+      <b>This is running on Raspberry Pi 2 using a Phoenix framework embedded image. Check the <a href="http://www.zohaib.me/elixir-phoenix-framework-embedded-image-for-raspberry-pi-2/" target="_blank">blog post</a> to know more about it.</b>
     </div>
   </div>
   <div id="messages" class="container text-left">
